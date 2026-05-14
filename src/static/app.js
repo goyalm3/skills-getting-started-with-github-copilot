@@ -17,9 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to fetch activities from API
   async function fetchActivities() {
     try {
-      const response = await fetch("/activities", {
+      const response = await fetch(`/activities?_=${Date.now()}`, {
         cache: "no-store",
       });
+
+      if (!response.ok) {
+        throw new Error(`Failed to load activities: ${response.status}`);
+      }
+
       const activities = await response.json();
 
       // Clear loading message
