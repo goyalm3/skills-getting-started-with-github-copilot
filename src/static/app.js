@@ -38,17 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 (participant) => `
                   <li class="participant-item">
                     <span class="participant-email">${participant}</span>
-                    <button
-                      type="button"
-                      class="participant-remove"
-                      data-activity="${name}"
-                      data-email="${participant}"
-                      aria-label="Remove ${participant} from ${name}"
-                    >
-                      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                        <path d="M9 3h6l1 2h4v2H4V5h4l1-2zm1 6h2v8h-2V9zm4 0h2v8h-2V9zM7 9h2v8H7V9zm-1 11h12l1-12H5l1 12z" />
-                      </svg>
-                    </button>
                   </li>
                 `
               )
@@ -112,36 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       showMessage("Failed to sign up. Please try again.", "error");
       console.error("Error signing up:", error);
-    }
-  });
-
-  activitiesList.addEventListener("click", async (event) => {
-    const removeButton = event.target.closest(".participant-remove");
-    if (!removeButton) {
-      return;
-    }
-
-    const { activity, email } = removeButton.dataset;
-
-    try {
-      const response = await fetch(
-        `/activities/${encodeURIComponent(activity)}/participants?email=${encodeURIComponent(email)}`,
-        {
-          method: "DELETE",
-        }
-      );
-
-      const result = await response.json();
-
-      if (response.ok) {
-        showMessage(result.message, "success");
-        await fetchActivities();
-      } else {
-        showMessage(result.detail || "Unable to remove participant.", "error");
-      }
-    } catch (error) {
-      showMessage("Failed to remove participant. Please try again.", "error");
-      console.error("Error removing participant:", error);
     }
   });
 
