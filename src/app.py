@@ -74,6 +74,12 @@ activities = {
         "schedule": "Tuesdays, 4:00 PM - 5:30 PM",
         "max_participants": 12,
         "participants": ["alex@mergington.edu", "rachel@mergington.edu", "tyler@mergington.edu"]
+    },
+    "Cricket Team": {
+        "description": "Learn cricket skills and participate in matches",
+        "schedule": "Saturdays, 10:00 AM - 12:00 PM",
+        "max_participants": 20,
+        "participants": ["matt@mergington.edu"]
     }
 }
 
